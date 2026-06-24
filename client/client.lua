@@ -25,7 +25,9 @@ local function Notify(title, message, duration, notifyType)
     end
 end
 
-RegisterCommand('ccn', function()
+lib.addCommand('ccn', {
+    help = 'View your Citizen ID'
+}, function()
     local citizenId = lib.callback.await('ccn:getCitizenId', false)
 
     if not citizenId then
@@ -44,4 +46,4 @@ RegisterCommand('ccn', function()
         30000,
         'phonemessage'
     )
-end, false)
+end)
