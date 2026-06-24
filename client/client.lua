@@ -25,9 +25,7 @@ local function Notify(title, message, duration, notifyType)
     end
 end
 
-lib.addCommand('ccn', {
-    help = 'View your Citizen ID'
-}, function()
+RegisterCommand('ccn', function()
     local citizenId = lib.callback.await('ccn:getCitizenId', false)
 
     if not citizenId then
@@ -45,5 +43,13 @@ lib.addCommand('ccn', {
         ('Your Citizen ID: %s'):format(citizenId),
         30000,
         'phonemessage'
+    )
+end, false)
+
+CreateThread(function()
+    TriggerEvent(
+        'chat:addSuggestion',
+        '/ccn',
+        'Display your Citizen ID'
     )
 end)
